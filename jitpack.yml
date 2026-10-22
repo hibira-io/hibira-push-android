@@ -1,0 +1,5 @@
+# https://jitpack.io/#hikibi-io/hikibi-push-android
+jdk:
+  - openjdk17
+install:
+  - ./gradlew :push:publishReleasePublicationToMavenLocal

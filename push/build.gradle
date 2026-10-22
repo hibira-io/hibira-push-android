@@ -1,0 +1,106 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+}
+
+def sdkVersion = '1.0.0'
+
+android {
+    namespace 'io.hikibi.push'
+    compileSdk 34
+
+    defaultConfig {
+        minSdk 24
+        buildConfigField "String", "VERSION_NAME", "\"${sdkVersion}\""
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
+
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.tape2:tape:2.0.0-beta1'
+    implementation 'com.squareup.moshi:moshi-kotlin:1.9.2'
+    implementation 'com.squareup.moshi:moshi-adapters:1.9.2'
+    implementation "dev.zacsweers.moshisealed:moshi-sealed-reflect:0.1.0"
+    implementation "dev.zacsweers.moshisealed:moshi-sealed-annotations:0.1.0"
+
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.9.24"
+
+    compileOnly "com.google.firebase:firebase-messaging:23.4.0"
+    compileOnly "com.google.firebase:firebase-installations:17.2.0"
+
+    implementation("androidx.work:work-runtime-ktx:2.7.0")
+    implementation 'androidx.concurrent:concurrent-futures:1.1.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.annotation:annotation:1.7.1'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'androidx.test:core:1.5.0'
+    testImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation 'androidx.test.ext:truth:1.5.0'
+    testImplementation "org.mockito:mockito-core:3.6.28"
+
+
+    testImplementation "net.bytebuddy:byte-buddy:1.8.22"
+    testImplementation "net.bytebuddy:byte-buddy-agent:1.8.22"
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'io.hikibi'
+                artifactId = 'push-android'
+                version = sdkVersion
+                pom {
+                    name = 'Hikibi Push for Android'
+                    description = 'Push notifications for Hikibi Push (Beams-compatible API)'
+                    url = 'https://github.com/hikibi-io/hikibi-push-android'
+                    licenses {
+                        license {
+                            name = 'MIT'
+                            url = 'https://github.com/hikibi-io/hikibi-push-android/blob/main/LICENSE.md'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

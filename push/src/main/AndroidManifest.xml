@@ -1,0 +1,41 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission android:name="${applicationId}.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:fullBackupContent="@xml/backup_rules">
+        <receiver
+            android:name="io.hikibi.push.reporting.FCMMessageReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="io.hikibi.push.fcm.EmptyMessagingService"
+            android:exported="false">
+            <intent-filter android:priority="1">
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <provider
+            android:authorities="${applicationId}.pushnotificationsinitprovider"
+            android:name="io.hikibi.push.internal.PushNotificationsInitProvider"
+            android:exported="false"
+            android:initOrder="99" />
+
+        <activity 
+            android:name="io.hikibi.push.reporting.OpenNotificationActivity"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="io.hikibi.push.OPEN_TRACKING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
