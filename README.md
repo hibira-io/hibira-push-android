@@ -1,6 +1,6 @@
 # Hibira Push for Android
 
-Android client for [Hibira Push](https://hikibi.io), the push notification
+Android client for [Hibira Push](https://hibira.io), the push notification
 service of Hibira. Hibira Push speaks a Beams-compatible device API, and this
 library is an MIT-licensed fork of `pusher/push-notifications-android` 1.10.0
 with the host made configurable.
@@ -79,7 +79,7 @@ Beams-compatible server SDK and your Hibira secret key.
 
 ### Host
 
-The SDK uses `https://ws.hikibi.io`. Self-hosted servers or another region can
+The SDK uses `https://ws.hibira.io`. Self-hosted servers or another region can
 set the host in the manifest:
 
 ```xml

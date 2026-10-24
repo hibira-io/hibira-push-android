@@ -18,7 +18,7 @@ public class PushNotifications {
     protected static Map<String, TokenProvider> tokenProvider = new HashMap<>();
 
     /**
-     * Sets the push API base URL, for example {@code https://ws-tyo.hikibi.io}, for apps
+     * Sets the push API base URL, for example {@code https://ws-tyo.hibira.io}, for apps
      * that are not on Hibira's default cluster or run their own server. Call it before
      * {@link #start}; the value is kept across restarts. Pass null to go back to the
      * {@code io.hibira.push:endpoint} manifest meta-data or the default
