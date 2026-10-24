@@ -6,7 +6,7 @@
     <application
         android:fullBackupContent="@xml/backup_rules">
         <receiver
-            android:name="io.hikibi.push.reporting.FCMMessageReceiver"
+            android:name="io.hibira.push.reporting.FCMMessageReceiver"
             android:permission="com.google.android.c2dm.permission.SEND"
             android:exported="true">
             <intent-filter>
@@ -16,7 +16,7 @@
         </receiver>
 
         <service
-            android:name="io.hikibi.push.fcm.EmptyMessagingService"
+            android:name="io.hibira.push.fcm.EmptyMessagingService"
             android:exported="false">
             <intent-filter android:priority="1">
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
@@ -25,15 +25,15 @@
 
         <provider
             android:authorities="${applicationId}.pushnotificationsinitprovider"
-            android:name="io.hikibi.push.internal.PushNotificationsInitProvider"
+            android:name="io.hibira.push.internal.PushNotificationsInitProvider"
             android:exported="false"
             android:initOrder="99" />
 
         <activity 
-            android:name="io.hikibi.push.reporting.OpenNotificationActivity"
+            android:name="io.hibira.push.reporting.OpenNotificationActivity"
             android:exported="false" >
             <intent-filter>
-                <action android:name="io.hikibi.push.OPEN_TRACKING" />
+                <action android:name="io.hibira.push.OPEN_TRACKING" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

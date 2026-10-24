@@ -6,16 +6,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-10-22
+## [1.0.0] - 2026-10-24
 
-First release of the Hikibi fork of `pusher/push-notifications-android` 1.10.0.
+First release of the Hibira fork of `pusher/push-notifications-android` 1.10.0.
 
 ### Changed
-- Package `com.pusher.pushnotifications` is now `io.hikibi.push`; the Gradle module is `push`.
+- Package `com.pusher.pushnotifications` is now `io.hibira.push`; the Gradle module is `push`.
 - `BeamsTokenProvider` is `PushTokenProvider`, `BeamsCallback` is `PushCallback`.
 - The SDK talks to `https://ws.hikibi.io` by default. Set another host with
-  `PushNotifications.setEndpoint` or the `io.hikibi.push:endpoint` manifest meta-data.
-- Published through JitPack instead of Maven Central.
+  `PushNotifications.setEndpoint` or the `io.hibira.push:endpoint` manifest meta-data
+  (`io.hikibi.push:endpoint`, from before the Hikibi → Hibira rename, is read too).
+- Published through JitPack as `com.github.hibira-io:hibira-push-android` instead of Maven Central.
 
 The entries below are from the upstream project.
 

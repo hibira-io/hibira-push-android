@@ -1,7 +1,7 @@
-# Hikibi Push for Android
+# Hibira Push for Android
 
-Android client for [Hikibi Push](https://hikibi.io), the push notification
-service in Hikibi. Hikibi Push speaks a Beams-compatible device API, and this
+Android client for [Hibira Push](https://hikibi.io), the push notification
+service of Hibira. Hibira Push speaks a Beams-compatible device API, and this
 library is an MIT-licensed fork of `pusher/push-notifications-android` 1.10.0
 with the host made configurable.
 
@@ -9,7 +9,7 @@ with the host made configurable.
 - Written in Kotlin and usable from Java.
 - Delivery uses Firebase Cloud Messaging, so your app still needs a Firebase
   project and `google-services.json`. Upload the FCM service account in the
-  Hikibi portal (app page, Push notifications).
+  Hibira portal (app page, Push notifications).
 
 ## Installation
 
@@ -35,14 +35,14 @@ plugins {
 
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.4.0'
-    implementation 'com.github.hikibi-io:hikibi-push-android:1.0.0'
+    implementation 'com.github.hibira-io:hibira-push-android:1.0.0'
 }
 ```
 
 ## Usage
 
 ```kotlin
-import io.hikibi.push.PushNotifications
+import io.hibira.push.PushNotifications
 
 PushNotifications.start(applicationContext, "YOUR_INSTANCE_ID")
 PushNotifications.addDeviceInterest("hello")
@@ -53,11 +53,11 @@ The instance ID is shown in the portal on the app's Push notifications card.
 ### Authenticated users
 
 ```kotlin
-import io.hikibi.push.PushCallback
-import io.hikibi.push.PushCallbackError
-import io.hikibi.push.auth.AuthData
-import io.hikibi.push.auth.AuthDataGetter
-import io.hikibi.push.auth.PushTokenProvider
+import io.hibira.push.PushCallback
+import io.hibira.push.PushCallbackError
+import io.hibira.push.auth.AuthData
+import io.hibira.push.auth.AuthDataGetter
+import io.hibira.push.auth.PushTokenProvider
 
 val tokenProvider = PushTokenProvider(
     "https://your-backend.example.com/push-auth",
@@ -75,7 +75,7 @@ PushNotifications.setUserId("user-1", tokenProvider, object : PushCallback<Void,
 ```
 
 Your backend returns `{"token": "..."}`, made with `generateToken` from any
-Beams-compatible server SDK and your Hikibi secret key.
+Beams-compatible server SDK and your Hibira secret key.
 
 ### Host
 
@@ -85,7 +85,7 @@ set the host in the manifest:
 ```xml
 <application>
     <meta-data
-        android:name="io.hikibi.push:endpoint"
+        android:name="io.hibira.push:endpoint"
         android:value="https://push.example.com" />
 </application>
 ```
@@ -97,13 +97,14 @@ PushNotifications.setEndpoint(applicationContext, "https://push.example.com")
 ```
 
 The value set in code wins over the manifest and is kept across launches.
+The pre-rename meta-data name `io.hikibi.push:endpoint` is still read.
 
 ## Moving from the Beams Android SDK
 
 | Before | After |
 |---|---|
-| `com.pusher:push-notifications-android` | `com.github.hikibi-io:hikibi-push-android` |
-| `com.pusher.pushnotifications.*` | `io.hikibi.push.*` |
+| `com.pusher:push-notifications-android` | `com.github.hibira-io:hibira-push-android` |
+| `com.pusher.pushnotifications.*` | `io.hibira.push.*` |
 | `BeamsTokenProvider` | `PushTokenProvider` |
 | `BeamsCallback` | `PushCallback` |
 | `PusherCallbackError` | `PushCallbackError` |
@@ -122,4 +123,4 @@ keep their names. Devices register again on first start with the new SDK.
 
 MIT. See [LICENSE.md](LICENSE.md). Based on
 [pusher/push-notifications-android](https://github.com/pusher/push-notifications-android),
-Copyright (c) 2017 Pusher Ltd. Hikibi is not affiliated with Pusher.
+Copyright (c) 2017 Pusher Ltd. Hibira is not affiliated with Pusher.
