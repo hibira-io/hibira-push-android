@@ -97,7 +97,6 @@ PushNotifications.setEndpoint(applicationContext, "https://push.example.com")
 ```
 
 The value set in code wins over the manifest and is kept across launches.
-The pre-rename meta-data name `io.hikibi.push:endpoint` is still read.
 
 ## Moving from the Beams Android SDK
 

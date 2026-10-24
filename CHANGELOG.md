@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - The default endpoint is now `https://ws.hibira.io`. `https://ws.hikibi.io` keeps
   working, so apps on 1.0.0 need no change.
 
+### Removed
+- The pre-rename manifest meta-data name `io.hikibi.push:endpoint`; use
+  `io.hibira.push:endpoint`.
+
 ## [1.0.0] - 2026-10-24
 
 First release of the Hibira fork of `pusher/push-notifications-android` 1.10.0.

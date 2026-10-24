@@ -7,8 +7,7 @@ import android.content.pm.PackageManager
  * Where the SDK sends its requests. The endpoint is, in order: the value
  * passed to PushNotifications.setEndpoint (kept across restarts, so
  * background work uses it too), the `io.hibira.push:endpoint` meta-data in
- * the app's manifest (or its pre-rename name `io.hikibi.push:endpoint`), or
- * Hibira's hosted push API.
+ * the app's manifest, or Hibira's hosted push API.
  */
 class SDKConfiguration(context: Context) {
   private val appContext = context.applicationContext ?: context
@@ -20,13 +19,11 @@ class SDKConfiguration(context: Context) {
   val endpoint: String
     get() = (prefs(appContext).getString(PREF_ENDPOINT, null)
         ?: metadataBundle?.getString(METADATA_ENDPOINT, null)
-        ?: metadataBundle?.getString(LEGACY_METADATA_ENDPOINT, null)
         ?: DEFAULT_ENDPOINT).trimEnd('/')
 
   companion object {
     const val DEFAULT_ENDPOINT = "https://ws.hibira.io"
     private const val METADATA_ENDPOINT = "io.hibira.push:endpoint"
-    private const val LEGACY_METADATA_ENDPOINT = "io.hikibi.push:endpoint"
     private const val PREF_ENDPOINT = "endpoint"
 
     private fun prefs(context: Context) =
