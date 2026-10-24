@@ -7,7 +7,7 @@ plugins {
 def sdkVersion = '1.0.0'
 
 android {
-    namespace 'io.hikibi.push'
+    namespace 'io.hibira.push'
     compileSdk 34
 
     defaultConfig {
@@ -86,17 +86,17 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'io.hikibi'
+                groupId = 'io.hibira'
                 artifactId = 'push-android'
                 version = sdkVersion
                 pom {
-                    name = 'Hikibi Push for Android'
-                    description = 'Push notifications for Hikibi Push (Beams-compatible API)'
-                    url = 'https://github.com/hikibi-io/hikibi-push-android'
+                    name = 'Hibira Push for Android'
+                    description = 'Push notifications for Hibira Push (Beams-compatible API)'
+                    url = 'https://github.com/hibira-io/hibira-push-android'
                     licenses {
                         license {
                             name = 'MIT'
-                            url = 'https://github.com/hikibi-io/hikibi-push-android/blob/main/LICENSE.md'
+                            url = 'https://github.com/hibira-io/hibira-push-android/blob/main/LICENSE.md'
                         }
                     }
                 }

@@ -1,5 +1,5 @@
 Copyright (c) 2017 Pusher Ltd.
-Modifications Copyright (c) 2026 Hikibi
+Modifications Copyright (c) 2026 Hibira
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

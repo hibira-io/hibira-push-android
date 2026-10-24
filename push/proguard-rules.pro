@@ -29,7 +29,7 @@
 -keep class android.support.v4.app.NotificationManagerCompat { *; }
 
 ## Overzealous rule, but future proof
--keep class io.hikibi.push.** {
+-keep class io.hibira.push.** {
   *;
 }
 
