@@ -397,7 +397,7 @@ class ServerSyncProcessHandler internal constructor(
           UserIdSet(
               userId = job.userId,
               callbackError = PushCallbackError(
-                  message = "Could not set user id: An unexpected error occurred when using the TokenProvider. Please contact support@hikibi.io",
+                  message = "Could not set user id: An unexpected error occurred when using the TokenProvider. Please contact support@hibira.io",
                   cause = e
               ))
       )
@@ -437,7 +437,7 @@ class ServerSyncProcessHandler internal constructor(
           UserIdSet(
             userId = job.userId,
             callbackError = PushCallbackError(
-                message = "Something went wrong: ${e.reason}. Please contact support@hikibi.io.",
+                message = "Something went wrong: ${e.reason}. Please contact support@hibira.io.",
                 cause = e
             ))
       )
