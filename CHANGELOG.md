@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-10-25
+
 ### Changed
 - The default endpoint is now `https://ws.hibira.io`. `https://ws.hikibi.io` keeps
   working, so apps on 1.0.0 need no change.
