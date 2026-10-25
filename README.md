@@ -122,4 +122,4 @@ keep their names. Devices register again on first start with the new SDK.
 
 MIT. See [LICENSE.md](LICENSE.md). Based on
 [pusher/push-notifications-android](https://github.com/pusher/push-notifications-android),
-Copyright (c) 2017 Pusher Ltd. Hibira is not affiliated with Pusher.
+Copyright (c) 2017 Pusher Ltd.
