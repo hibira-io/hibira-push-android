@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-def sdkVersion = '1.1.0'
+def sdkVersion = '1.1.1'
 
 android {
     namespace 'io.hibira.push'
@@ -92,12 +92,16 @@ afterEvaluate {
                 pom {
                     name = 'Hibira Push for Android'
                     description = 'Push notifications for Hibira Push (Beams-compatible API)'
-                    url = 'https://github.com/hibira-io/hibira-push-android'
+                    url = 'https://hibira.io'
                     licenses {
                         license {
                             name = 'MIT'
                             url = 'https://github.com/hibira-io/hibira-push-android/blob/main/LICENSE.md'
                         }
+                    }
+                    scm {
+                        url = 'https://github.com/hibira-io/hibira-push-android'
+                        connection = 'scm:git:https://github.com/hibira-io/hibira-push-android.git'
                     }
                 }
             }
