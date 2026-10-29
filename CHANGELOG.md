@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-10-29
+
+### Changed
+- The POM project URL now points at https://hibira.io; the repository moved to the POM `scm` block. No code changes.
+
 ## [1.1.0] - 2026-10-25
 
 ### Changed

@@ -35,7 +35,7 @@ plugins {
 
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.4.0'
-    implementation 'com.github.hibira-io:hibira-push-android:1.1.0'
+    implementation 'com.github.hibira-io:hibira-push-android:1.1.1'
 }
 ```
 

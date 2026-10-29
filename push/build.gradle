@@ -4,7 +4,7 @@ plugins {
     id 'maven-publish'
 }
 
-def sdkVersion = '1.1.0'
+def sdkVersion = '1.1.1'
 
 android {
     namespace 'io.hibira.push'
