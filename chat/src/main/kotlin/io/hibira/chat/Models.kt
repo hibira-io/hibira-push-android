@@ -87,8 +87,15 @@ data class Message(
     val attachments: List<Attachment> = emptyList(),
     /** The roles this message is limited to (internal notes), if any. */
     val visibleTo: List<String> = emptyList(),
+    /** The language [text] was written in, when the app sets users' languages. */
+    val language: String? = null,
+    /** [text] translated, by BCP 47 language tag. */
+    val translations: Map<String, String> = emptyMap(),
     val raw: Map<String, Any?> = emptyMap(),
 ) {
+    /** The text to show a reader of [lang]: its translation when there is one, else [text]. */
+    fun textFor(lang: String?): String = lang?.let { translations[it] } ?: text
+
     val isSystem get() = kind == "system"
     val isDeleted get() = deletedAt != null
     val isEdited get() = editedAt != null
@@ -108,6 +115,8 @@ data class Message(
             reactions = m["reactions"].asMap().mapValues { (_, v) -> v.asList().map { it.toString() } },
             attachments = m["attachments"].asList().map { Attachment.fromJson(it.asMap()) },
             visibleTo = m["visible_to"].asList().map { it.toString() },
+            language = m.str("language")?.takeIf { it.isNotEmpty() },
+            translations = m["translations"].asMap().mapValues { (_, v) -> v.toString() },
             raw = m,
         )
     }

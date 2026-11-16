@@ -145,6 +145,9 @@ class ConversationController internal constructor(
     suspend fun react(seq: Long, emoji: String): Message = apply(client.react(conversationId, seq, emoji))
     suspend fun unreact(seq: Long, emoji: String): Message = apply(client.unreact(conversationId, seq, emoji))
 
+    /** Translates message [seq] into [language] on request. */
+    suspend fun translate(seq: Long, language: String): Message = apply(client.translate(conversationId, seq, language))
+
     /** Adds the user's reaction, or takes it back if they already reacted with [emoji]. */
     suspend fun toggleReaction(seq: Long, emoji: String): Message {
         val me = client.currentUser()

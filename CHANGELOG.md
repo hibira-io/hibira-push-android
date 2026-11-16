@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   the Hibira Chat API's user routes, `ChatSocket` for live `chat.*` events after
   `pusher:signin`, and live views of a conversation (`ConversationController`) and of
   the user's conversations with unread counts (`ConversationListController`).
+- Translations: `Message.language`, `Message.translations` and `textFor(lang)`,
+  `ChatClient.translate`, `setLanguage` and `me`.
 
 ## [1.1.1] - 2026-10-29
 

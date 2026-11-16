@@ -206,9 +206,17 @@ show up. Without a socket it still works, from what it loads.
 
 `ChatClient` has every user route: `conversations`, `conversation`,
 `messages` (`after`, `last`, `limit`), `search`, `send`, `edit`, `delete`,
-`react`, `unreact`, `report`, `read`, `typing` and `upload` (straight to
-storage, up to 25 MB; send the returned `Attachment` in a message).
-Errors are `ChatException` with the HTTP status.
+`react`, `unreact`, `report`, `read`, `typing`, `translate`,
+`setLanguage`, `me` and `upload` (straight to storage, up to 25 MB; send
+the returned `Attachment` in a message). Errors are `ChatException` with
+the HTTP status.
+
+**Translations.** Set the user's language once (`chat.setLanguage("ja")`)
+and messages from others arrive translated a moment later
+(`chat.message_updated`). `message.textFor("ja")` gives the translation
+when there is one, else the original text; `room.translate(seq, "ja")`
+translates one message on request. Translation needs a Chat add-on on the
+hosted service.
 
 If your app already runs a Pusher client that signs in, skip `ChatSocket`
 and forward the user's events:
@@ -226,7 +234,7 @@ registered under the same user ID.
 
 ### 中文摘要
 
-`chat` 模組是 Hibira Chat API 的 Android 用戶端：`ChatClient` 呼叫使用者路由（對話、訊息紀錄、傳送、編輯、刪除、表情回應、檢舉、已讀、輸入中、附件上傳），`ChatSocket` 自己連線並以使用者身分登入，收 `chat.*` 即時事件，不需要其他 Pusher 函式庫。`conversationList()` 提供含未讀數的對話列表，`conversationController(id)` 提供單一對話的訊息、往前翻頁、輸入中與已讀狀態，斷線重連後會自動補齊。App 需要你的後端提供使用者 token（用 app secret 簽的 JWT）和使用者認證端點（`pusher.authenticateUser`）；建立對話、加成員仍由你的後端呼叫。
+`chat` 模組是 Hibira Chat API 的 Android 用戶端：`ChatClient` 呼叫使用者路由（對話、訊息紀錄、傳送、編輯、刪除、表情回應、檢舉、已讀、輸入中、翻譯、使用者語言、附件上傳），`ChatSocket` 自己連線並以使用者身分登入，收 `chat.*` 即時事件，不需要其他 Pusher 函式庫。`conversationList()` 提供含未讀數的對話列表，`conversationController(id)` 提供單一對話的訊息、往前翻頁、輸入中與已讀狀態，斷線重連後會自動補齊。App 需要你的後端提供使用者 token（用 app secret 簽的 JWT）和使用者認證端點（`pusher.authenticateUser`）；建立對話、加成員仍由你的後端呼叫。
 
 ## Building
 

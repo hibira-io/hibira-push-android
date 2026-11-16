@@ -103,4 +103,19 @@ class ChatClientTest {
         assertEquals("private", put.getHeader("x-amz-acl"))
         assertEquals(3L, put.bodySize)
     }
+
+    @Test
+    fun setsTheLanguageAndTranslates() = runBlocking {
+        server.enqueue(MockResponse().setBody("""{"user_id":"ann","language":"ja"}"""))
+        server.enqueue(MockResponse().setBody("""{"message":{"seq":3,"text":"hi","language":"en","translations":{"ja":"やあ"}}}"""))
+        assertEquals("ja", client.setLanguage("ja"))
+        val put = server.takeRequest()
+        assertEquals("PUT", put.method)
+        assertEquals("/apps/app-1/chat/me/", put.path)
+        assertEquals("""{"language":"ja"}""", put.body.readUtf8())
+        val m = client.translate("c", 3, "ja")
+        assertEquals("やあ", m.textFor("ja"))
+        assertEquals("hi", m.textFor("ko"))
+        assertEquals("/apps/app-1/chat/me/conversations/c/messages/3/translations", server.takeRequest().path)
+    }
 }

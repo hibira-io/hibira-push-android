@@ -220,6 +220,24 @@ class ChatClient @JvmOverloads constructor(
     }
 
     /**
+     * Translates message [seq] into [language] (a BCP 47 tag) and keeps it on
+     * the message. Needs a Chat add-on on the hosted service (403 on the free
+     * allowance, 429 past the monthly cap).
+     */
+    suspend fun translate(id: String, seq: Long, language: String): Message =
+        Message.fromJson(call("POST", conv(id) + listOf("messages", "$seq", "translations"), mapOf("language" to language))["message"].asMap())
+
+    /** The user's settings: `user_id` and `language`. */
+    suspend fun me(): Map<String, Any?> = call("GET", listOf(""))
+
+    /**
+     * Sets the language messages are translated into for this user (a BCP 47
+     * tag such as `ja` or `zh-TW`; null for none). Returns the language kept.
+     */
+    suspend fun setLanguage(language: String?): String? =
+        call("PUT", listOf(""), mapOf("language" to language)).str("language")?.takeIf { it.isNotEmpty() }
+
+    /**
      * Uploads a file (up to 25 MB) straight to storage; send the returned
      * [Attachment] in a message's attachments.
      */
