@@ -1,0 +1,74 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-library'
+    id 'maven-publish'
+}
+
+def sdkVersion = '1.2.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withSourcesJar()
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
+    }
+}
+
+dependencies {
+    api 'com.squareup.okhttp3:okhttp:4.12.0'
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3'
+}
+
+tasks.named('jar') {
+    manifest {
+        attributes('Implementation-Version': sdkVersion)
+    }
+}
+
+def generatedVersion = layout.buildDirectory.dir('generated/version')
+def writeVersion = tasks.register('writeVersion') {
+    def out = generatedVersion
+    inputs.property('version', sdkVersion)
+    outputs.dir(out)
+    doLast {
+        def f = out.get().file('io/hibira/chat/Version.kt').asFile
+        f.parentFile.mkdirs()
+        f.text = "package io.hibira.chat\n\ninternal const val SDK_VERSION = \"${sdkVersion}\"\n"
+    }
+}
+sourceSets.main.kotlin.srcDir(writeVersion)
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            from components.java
+            groupId = 'io.hibira'
+            artifactId = 'chat'
+            version = sdkVersion
+            pom {
+                name = 'Hibira Chat for Android'
+                description = 'Conversations, message history and live chat events for the Hibira Chat API'
+                url = 'https://hibira.io/chat-api'
+                licenses {
+                    license {
+                        name = 'MIT'
+                        url = 'https://github.com/hibira-io/hibira-push-android/blob/main/LICENSE.md'
+                    }
+                }
+                scm {
+                    url = 'https://github.com/hibira-io/hibira-push-android'
+                    connection = 'scm:git:https://github.com/hibira-io/hibira-push-android.git'
+                }
+            }
+        }
+    }
+}
