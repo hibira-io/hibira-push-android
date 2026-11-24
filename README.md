@@ -87,7 +87,7 @@ Beams-compatible server SDK and your Hibira secret key.
 
 ### Host
 
-The SDK uses `https://ws.hibira.io`. Self-hosted servers or another region can
+The SDK uses `https://api.hibira.io`. Self-hosted servers or another region can
 set the host in the manifest:
 
 ```xml
