@@ -43,7 +43,7 @@ plugins {
 
 dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.4.0'
-    implementation 'com.github.hibira-io:hibira-push-android:1.1.1'
+    implementation 'com.github.hibira-io:hibira-push-android:1.3.0'
 }
 ```
 
@@ -129,11 +129,11 @@ the user and receives the `chat.*` events on the user's channel.
 
 ```groovy
 dependencies {
-    implementation 'com.github.hibira-io.hibira-push-android:chat:1.2.0'
+    implementation 'com.github.hibira-io.hibira-push-android:chat:1.3.0'
 }
 ```
 
-(`com.github.hibira-io.hibira-push-android:push-android:1.2.0` is the push
+(`com.github.hibira-io.hibira-push-android:push-android:1.3.0` is the push
 library on its own.)
 
 ### Your server
