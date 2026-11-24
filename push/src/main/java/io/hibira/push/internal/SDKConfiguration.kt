@@ -22,7 +22,7 @@ class SDKConfiguration(context: Context) {
         ?: DEFAULT_ENDPOINT).trimEnd('/')
 
   companion object {
-    const val DEFAULT_ENDPOINT = "https://ws.hibira.io"
+    const val DEFAULT_ENDPOINT = "https://api.hibira.io"
     private const val METADATA_ENDPOINT = "io.hibira.push:endpoint"
     private const val PREF_ENDPOINT = "endpoint"
 
